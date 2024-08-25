@@ -1,0 +1,73 @@
+1	binarySearch: 
+2	BeginFunc 
+3		PushParam RBP 
+4		ra = PopParam 
+5		array = PopParam 
+6		x = PopParam 
+7		low = PopParam 
+8		high = PopParam 
+9		t0 = low <= high
+10		if t0 goto 12 
+11		goto 33 
+12		t1 = high - low
+13		t2 = t1 // 2
+14		t3 = low + t2
+15		Stackpointer +4 
+16		mid = t3 
+17		t4 = mid * 8
+18		t5 = array[t4] == x
+19		if t5 goto 21 
+20		goto 23 
+21		return mid 
+22		goto 32 
+23		t6 = mid * 8
+24		t7 = array[t6] < x
+25		if t7 goto 27 
+26		goto 30 
+27		t8 = mid + 1
+28		low = t8 
+29		goto 32 
+30		t9 = mid - 1
+31		high = t9 
+32		goto 9 
+33		t10 =  - 1
+34		return t10 
+35		Stackpointer -4 
+36		goto ra 
+37	EndFunc 
+38	main: 
+39	BeginFunc 
+40		PushParam RBP 
+41		ra = PopParam 
+42		Heapalloc 7 
+43		array = [3,4,5,6,7,8,9] 
+44		call len array 
+45		PopParamra t11 
+46		t12 = t11 - 1
+47		PushParamra 51 
+48		PushParam t12 
+49		PushParam 0 
+50		PushParam 4 
+51		PushParam array 
+52		call function binarySearch 
+53		PopParamAll 4 
+54		PopParamra t13 
+55		Stackpointer +4 
+56		result = t13 
+57		t14 =  - 1
+58		t15 = result != t14
+59		if t15 goto 61 
+60		goto 64 
+61		call printstr "Element is present at index:" 
+62		call print result 
+63		goto 65 
+64		call printstr "Element is not present" 
+65		Stackpointer -40 
+66		goto ra 
+67		return 
+68	EndFunc 
+69	PushParamra 69 
+70	call function main 
+71	PopParamAll 0 
+72	PopParamra t16 
+73	EOF 

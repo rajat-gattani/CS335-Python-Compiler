@@ -1,0 +1,158 @@
+1	heapify: 
+2	BeginFunc 
+3		PushParam RBP 
+4		ra = PopParam 
+5		arr = PopParam 
+6		n = PopParam 
+7		i = PopParam 
+8		Stackpointer +4 
+9		largest = i 
+10		t0 = 2 * i
+11		t1 = t0 + 1
+12		Stackpointer +4 
+13		l = t1 
+14		t2 = 2 * i
+15		t3 = t2 + 2
+16		Stackpointer +4 
+17		r = t3 
+18		t4 = l < n
+19		if t4 goto 21 
+20		goto 27 
+21		t5 = l * 8
+22		t6 = largest * 8
+23		t7 = arr[t5] > arr[t6]
+24		if t7 goto 26 
+25		goto 27 
+26		largest = l 
+27		t8 = r < n
+28		if t8 goto 30 
+29		goto 36 
+30		t9 = r * 8
+31		t10 = largest * 8
+32		t11 = arr[t9] > arr[t10]
+33		if t11 goto 35 
+34		goto 36 
+35		largest = r 
+36		t12 = largest != i
+37		if t12 goto 39 
+38		goto 53 
+39		t13 = i * 8
+40		temp = arr[t13] 
+41		t14 = i * 8
+42		t15 = largest * 8
+43		arr[t14] = arr[t15] 
+44		t16 = largest * 8
+45		arr[t16] = temp 
+46		PushParamra 49 
+47		PushParam largest 
+48		PushParam n 
+49		PushParam arr 
+50		call function heapify 
+51		PopParamAll 3 
+52		PopParamra t17 
+53		Stackpointer -12 
+54		goto ra 
+55		return 
+56	EndFunc 
+57	heap_sort: 
+58	BeginFunc 
+59		PushParam RBP 
+60		ra = PopParam 
+61		arr = PopParam 
+62		call len arr 
+63		PopParamra t18 
+64		Stackpointer +4 
+65		n = t18 
+66		t19 = n // 2
+67		i = 0 
+68		t20 = i < t19
+69		if t20 goto 71 
+70		goto 85 
+71		t21 = n // 2
+72		t22 = t21 - 1
+73		t23 = t22 - i
+74		Stackpointer +4 
+75		j = t23 
+76		PushParamra 79 
+77		PushParam j 
+78		PushParam n 
+79		PushParam arr 
+80		call function heapify 
+81		PopParamAll 3 
+82		PopParamra t24 
+83		i = i + 1
+84		goto 68 
+85		t25 = n - 1
+86		i = 0 
+87		t26 = i < t25
+88		if t26 goto 90 
+89		goto 109 
+90		t27 = n - 1
+91		t28 = t27 - i
+92		j = t28 
+93		t29 = 0 * 8
+94		temp = arr[t29] 
+95		t30 = 0 * 8
+96		t31 = j * 8
+97		arr[t30] = arr[t31] 
+98		t32 = j * 8
+99		arr[t32] = temp 
+100		PushParamra 103 
+101		PushParam 0 
+102		PushParam j 
+103		PushParam arr 
+104		call function heapify 
+105		PopParamAll 3 
+106		PopParamra t33 
+107		i = i + 1
+108		goto 87 
+109		Stackpointer -8 
+110		goto ra 
+111		return 
+112	EndFunc 
+113	printArray: 
+114	BeginFunc 
+115		PushParam RBP 
+116		ra = PopParam 
+117		l = PopParam 
+118		call len l 
+119		PopParamra t34 
+120		i = 0 
+121		t35 = i < t34
+122		if t35 goto 124 
+123		goto 128 
+124		t36 = i * 8
+125		call print l[t36] 
+126		i = i + 1
+127		goto 121 
+128		Stackpointer -0 
+129		goto ra 
+130		return 
+131	EndFunc 
+132	main: 
+133	BeginFunc 
+134		PushParam RBP 
+135		ra = PopParam 
+136		t37 =  - 11
+137		t38 =  - 5
+138		Heapalloc 6 
+139		arr = [12,t37,13,t38,6,7] 
+140		PushParamra 141 
+141		PushParam arr 
+142		call function heap_sort 
+143		PopParamAll 1 
+144		PopParamra t39 
+145		PushParamra 146 
+146		PushParam arr 
+147		call function printArray 
+148		PopParamAll 1 
+149		PopParamra t40 
+150		Stackpointer -32 
+151		goto ra 
+152		return 
+153	EndFunc 
+154	PushParamra 154 
+155	call function main 
+156	PopParamAll 0 
+157	PopParamra t41 
+158	EOF 

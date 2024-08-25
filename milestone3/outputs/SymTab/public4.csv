@@ -1,0 +1,10 @@
+Level,Sublevel,Token,Lexeme,Type,Line Number,Is Function/Class,Return Type
+0,1,FUNCTION,binarySearch,FUNCTION,1,1,int,96,
+1,1,VARIABLE,array,list[int],1,0,None,0,
+1,2,VARIABLE,x,int,1,0,None,0,
+1,3,VARIABLE,low,int,1,0,None,0,
+1,4,VARIABLE,high,int,1,0,None,0,
+1,5,VARIABLE,mid,int,3,0,None,0,
+0,2,FUNCTION,main,FUNCTION,13,1,None,40,
+1,1,VARIABLE,array,list[int],14,0,None,0,
+1,2,VARIABLE,result,int,15,0,None,0,

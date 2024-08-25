@@ -1,0 +1,175 @@
+1	merge: 
+2	BeginFunc 
+3		PushParam RBP 
+4		ra = PopParam 
+5		nums = PopParam 
+6		start = PopParam 
+7		mid = PopParam 
+8		end = PopParam 
+9		temp = PopParam 
+10		Stackpointer +4 
+11		k = start 
+12		t0 = end + 1
+13		i = start 
+14		t1 = i < t0
+15		if t1 goto 17 
+16		goto 22 
+17		t2 = i * 8
+18		t3 = i * 8
+19		temp[t2] = nums[t3] 
+20		i = i + 1
+21		goto 14 
+22		Stackpointer +4 
+23		left_index = start 
+24		t4 = mid + 1
+25		Stackpointer +4 
+26		right_index = t4 
+27		Stackpointer +4 
+28		current = start 
+29		t5 = left_index <= mid
+30		if t5 goto 32 
+31		goto 54 
+32		t6 = right_index <= end
+33		if t6 goto 35 
+34		goto 54 
+35		t7 = left_index * 8
+36		t8 = right_index * 8
+37		t9 = temp[t7] <= temp[t8]
+38		if t9 goto 40 
+39		goto 46 
+40		t10 = current * 8
+41		t11 = left_index * 8
+42		nums[t10] = temp[t11] 
+43		t12 = left_index + 1
+44		left_index = t12 
+45		goto 51 
+46		t13 = current * 8
+47		t14 = right_index * 8
+48		nums[t13] = temp[t14] 
+49		t15 = right_index + 1
+50		right_index = t15 
+51		t16 = current + 1
+52		current = t16 
+53		goto 29 
+54		t17 = left_index <= mid
+55		if t17 goto 57 
+56		goto 65 
+57		t18 = current * 8
+58		t19 = left_index * 8
+59		nums[t18] = temp[t19] 
+60		t20 = left_index + 1
+61		left_index = t20 
+62		t21 = current + 1
+63		current = t21 
+64		goto 54 
+65		Stackpointer -16 
+66		goto ra 
+67		return 
+68	EndFunc 
+69	merge_sort: 
+70	BeginFunc 
+71		PushParam RBP 
+72		ra = PopParam 
+73		nums = PopParam 
+74		start = PopParam 
+75		end = PopParam 
+76		temp = PopParam 
+77		t22 = start < end
+78		if t22 goto 80 
+79		goto 110 
+80		t23 = start + end
+81		t24 = t23 / 2
+82		Stackpointer +4 
+83		mid = t24 
+84		PushParamra 88 
+85		PushParam temp 
+86		PushParam mid 
+87		PushParam start 
+88		PushParam nums 
+89		call function merge_sort 
+90		PopParamAll 4 
+91		PopParamra t25 
+92		t26 = mid + 1
+93		PushParamra 97 
+94		PushParam temp 
+95		PushParam end 
+96		PushParam t26 
+97		PushParam nums 
+98		call function merge_sort 
+99		PopParamAll 4 
+100		PopParamra t27 
+101		PushParamra 106 
+102		PushParam temp 
+103		PushParam end 
+104		PushParam mid 
+105		PushParam start 
+106		PushParam nums 
+107		call function merge 
+108		PopParamAll 5 
+109		PopParamra t28 
+110		Stackpointer -4 
+111		goto ra 
+112		return 
+113	EndFunc 
+114	print_list: 
+115	BeginFunc 
+116		PushParam RBP 
+117		ra = PopParam 
+118		arr = PopParam 
+119		leng = PopParam 
+120		i = 0 
+121		t29 = i < leng
+122		if t29 goto 124 
+123		goto 128 
+124		t30 = i * 8
+125		call print arr[t30] 
+126		i = i + 1
+127		goto 121 
+128		Stackpointer -0 
+129		goto ra 
+130		return 
+131	EndFunc 
+132	main: 
+133	BeginFunc 
+134		PushParam RBP 
+135		ra = PopParam 
+136		Heapalloc 7 
+137		nums = [38,27,43,3,9,82,10] 
+138		call len nums 
+139		PopParamra t31 
+140		Stackpointer +4 
+141		leng = t31 
+142		call printstr "Original list:\n" 
+143		PushParamra 145 
+144		PushParam leng 
+145		PushParam nums 
+146		call function print_list 
+147		PopParamAll 2 
+148		PopParamra t32 
+149		Heapalloc 7 
+150		temp = [0,0,0,0,0,0,0] 
+151		t33 = leng - 1
+152		PushParamra 156 
+153		PushParam temp 
+154		PushParam t33 
+155		PushParam 0 
+156		PushParam nums 
+157		call function merge_sort 
+158		PopParamAll 4 
+159		PopParamra t34 
+160		call printstr "Sorted list:\n" 
+161		PushParamra 163 
+162		PushParam leng 
+163		PushParam nums 
+164		call function print_list 
+165		PopParamAll 2 
+166		PopParamra t35 
+167		Stackpointer -76 
+168		goto ra 
+169		return 
+170	EndFunc 
+171	PushParamra 171 
+172	call function main 
+173	PopParamAll 0 
+174	PopParamra t36 
+175	EOF 

@@ -1,0 +1,146 @@
+1	Student.__init__: 
+2	BeginFunc 
+3		PushParam RBP 
+4		ra = PopParam 
+5		name = PopParam 
+6		age = PopParam 
+7		grade = PopParam 
+8		Stackpointer +0 
+9		self.name = name 
+10		Stackpointer +4 
+11		self.age = age 
+12		Stackpointer +0 
+13		self.grade = grade 
+14		Stackpointer -4 
+15		goto ra 
+16		return 
+17	EndFunc 
+18	Student.display_info: 
+19	BeginFunc 
+20		PushParam RBP 
+21		ra = PopParam 
+22		call printstr "Name: " 
+23		call printstr self.name 
+24		call printstr "Age: " 
+25		call print self.age 
+26		call printstr "Grade: " 
+27		call printstr self.grade 
+28		Stackpointer -0 
+29		goto ra 
+30		return 
+31	EndFunc 
+32	Student.update_grade: 
+33	BeginFunc 
+34		PushParam RBP 
+35		ra = PopParam 
+36		new_grade = PopParam 
+37		Stackpointer +0 
+38		self.grade = new_grade 
+39		Stackpointer -0 
+40		goto ra 
+41		return 
+42	EndFunc 
+43	Student.update_age: 
+44	BeginFunc 
+45		PushParam RBP 
+46		ra = PopParam 
+47		new_age = PopParam 
+48		Stackpointer +4 
+49		self.age = new_age 
+50		Stackpointer -4 
+51		goto ra 
+52		return 
+53	EndFunc 
+54	Student.calculate_birth_year: 
+55	BeginFunc 
+56		PushParam RBP 
+57		ra = PopParam 
+58		current_year = PopParam 
+59		t0 = current_year - self.age
+60		Stackpointer +4 
+61		birth_year = t0 
+62		return birth_year 
+63		Stackpointer -4 
+64		goto ra 
+65	EndFunc 
+66	main: 
+67	BeginFunc 
+68		PushParam RBP 
+69		ra = PopParam 
+70		create_obj 40 student1 
+71		PushParamra 74 
+72		PushParam "12th" 
+73		PushParam 17 
+74		PushParam "Alice" 
+75		call class Student 
+76		PopParamAll 3 
+77		create_obj 40 student2 
+78		PushParamra 81 
+79		PushParam "11th" 
+80		PushParam 16 
+81		PushParam "Bob" 
+82		call class Student 
+83		PopParamAll 3 
+84		call printstr "Initial Student Information:\n" 
+85		call printstr "Student 1:\n" 
+86		PushParamra 86 
+87		call obj student1.display_info 
+88		PopParamAll 0 
+89		PopParamra t3 
+90		call printstr "Student 2:\n" 
+91		PushParamra 91 
+92		call obj student2.display_info 
+93		PopParamAll 0 
+94		PopParamra t4 
+95		call printstr "Updating Student Information...\n" 
+96		PushParamra 97 
+97		PushParam "11th" 
+98		call obj student1.update_grade 
+99		PopParamAll 1 
+100		PopParamra t5 
+101		PushParamra 102 
+102		PushParam 17 
+103		call obj student2.update_age 
+104		PopParamAll 1 
+105		PopParamra t6 
+106		call printstr "Updated Student Information...\n" 
+107		call printstr "Student 1:\n" 
+108		PushParamra 108 
+109		call obj student1.display_info 
+110		PopParamAll 0 
+111		PopParamra t7 
+112		call printstr "Student 2:\n" 
+113		PushParamra 113 
+114		call obj student2.display_info 
+115		PopParamAll 0 
+116		PopParamra t8 
+117		Stackpointer +4 
+118		current_year = 2024 
+119		call printstr "Calculating Birth Year:\n" 
+120		PushParamra 121 
+121		PushParam current_year 
+122		call obj student1.calculate_birth_year 
+123		PopParamAll 1 
+124		PopParamra t9 
+125		Stackpointer +4 
+126		year1 = t9 
+127		PushParamra 128 
+128		PushParam current_year 
+129		call obj student2.calculate_birth_year 
+130		PopParamAll 1 
+131		PopParamra t10 
+132		Stackpointer +4 
+133		year2 = t10 
+134		call printstr "Birth Year for student 1 is : " 
+135		call print year1 
+136		call printstr "Birth Year for student 2 is : " 
+137		call print year2 
+138		Stackpointer -12 
+139		goto ra 
+140		return 
+141	EndFunc 
+142	PushParamra 142 
+143	call function main 
+144	PopParamAll 0 
+145	PopParamra t11 
+146	EOF 

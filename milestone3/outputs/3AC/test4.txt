@@ -1,0 +1,242 @@
+1	Animal.__init__: 
+2	BeginFunc 
+3		PushParam RBP 
+4		ra = PopParam 
+5		name = PopParam 
+6		age = PopParam 
+7		Stackpointer +0 
+8		self.name = name 
+9		Stackpointer +4 
+10		self.age = age 
+11		Stackpointer -4 
+12		goto ra 
+13		return 
+14	EndFunc 
+15	Animal.make_sound: 
+16	BeginFunc 
+17		PushParam RBP 
+18		ra = PopParam 
+19		call printstr "Generic animal sound\n" 
+20		Stackpointer -0 
+21		goto ra 
+22		return 
+23	EndFunc 
+24	Animal.describe: 
+25	BeginFunc 
+26		PushParam RBP 
+27		ra = PopParam 
+28		call printstr "Name:" 
+29		call printstr self.name 
+30		call printstr "Age:" 
+31		call print self.age 
+32		Stackpointer -0 
+33		goto ra 
+34		return 
+35	EndFunc 
+36	Dog.__init__: 
+37	BeginFunc 
+38		PushParam RBP 
+39		ra = PopParam 
+40		name = PopParam 
+41		age = PopParam 
+42		breed = PopParam 
+43		PushParamra 45 
+44		PushParam age 
+45		PushParam name 
+46		call class_func Animal 
+47		PopParamAll 2 
+48		Stackpointer +0 
+49		self.breed = breed 
+50		Stackpointer -0 
+51		goto ra 
+52		return 
+53	EndFunc 
+54	Dog.make_sound: 
+55	BeginFunc 
+56		PushParam RBP 
+57		ra = PopParam 
+58		call printstr "Woof!\n" 
+59		Stackpointer -0 
+60		goto ra 
+61		return 
+62	EndFunc 
+63	Dog.describe: 
+64	BeginFunc 
+65		PushParam RBP 
+66		ra = PopParam 
+67		call printstr "Name:" 
+68		call printstr self.name 
+69		call printstr "Age:" 
+70		call print self.age 
+71		call printstr "Breed:" 
+72		call printstr self.breed 
+73		Stackpointer -0 
+74		goto ra 
+75		return 
+76	EndFunc 
+77	Cat.__init__: 
+78	BeginFunc 
+79		PushParam RBP 
+80		ra = PopParam 
+81		name = PopParam 
+82		age = PopParam 
+83		color = PopParam 
+84		PushParamra 86 
+85		PushParam age 
+86		PushParam name 
+87		call class_func Animal 
+88		PopParamAll 2 
+89		Stackpointer +0 
+90		self.color = color 
+91		Stackpointer -0 
+92		goto ra 
+93		return 
+94	EndFunc 
+95	Cat.make_sound: 
+96	BeginFunc 
+97		PushParam RBP 
+98		ra = PopParam 
+99		call printstr "Meow!\n" 
+100		Stackpointer -0 
+101		goto ra 
+102		return 
+103	EndFunc 
+104	Cat.describe: 
+105	BeginFunc 
+106		PushParam RBP 
+107		ra = PopParam 
+108		call printstr "Name:" 
+109		call printstr self.name 
+110		call printstr "Age:" 
+111		call print self.age 
+112		call printstr "Color:" 
+113		call printstr self.color 
+114		Stackpointer -0 
+115		goto ra 
+116		return 
+117	EndFunc 
+118	Kitten.__init__: 
+119	BeginFunc 
+120		PushParam RBP 
+121		ra = PopParam 
+122		name = PopParam 
+123		age = PopParam 
+124		color = PopParam 
+125		PushParamra 128 
+126		PushParam color 
+127		PushParam age 
+128		PushParam name 
+129		call class_func Cat 
+130		PopParamAll 3 
+131		Stackpointer -0 
+132		goto ra 
+133		return 
+134	EndFunc 
+135	Kitten.make_sound: 
+136	BeginFunc 
+137		PushParam RBP 
+138		ra = PopParam 
+139		call printstr "Kitten sounds!\n" 
+140		Stackpointer -0 
+141		goto ra 
+142		return 
+143	EndFunc 
+144	Puppy.__init__: 
+145	BeginFunc 
+146		PushParam RBP 
+147		ra = PopParam 
+148		name = PopParam 
+149		age = PopParam 
+150		breed = PopParam 
+151		PushParamra 154 
+152		PushParam breed 
+153		PushParam age 
+154		PushParam name 
+155		call class_func Dog 
+156		PopParamAll 3 
+157		Stackpointer -0 
+158		goto ra 
+159		return 
+160	EndFunc 
+161	Puppy.make_sound: 
+162	BeginFunc 
+163		PushParam RBP 
+164		ra = PopParam 
+165		call printstr "Puppy sounds!\n" 
+166		Stackpointer -0 
+167		goto ra 
+168		return 
+169	EndFunc 
+170	main: 
+171	BeginFunc 
+172		PushParam RBP 
+173		ra = PopParam 
+174		create_obj 24 dog1 
+175		PushParamra 178 
+176		PushParam "Labrador" 
+177		PushParam 3 
+178		PushParam "Buddy" 
+179		call class Dog 
+180		PopParamAll 3 
+181		create_obj 24 cat1 
+182		PushParamra 185 
+183		PushParam "Calico" 
+184		PushParam 2 
+185		PushParam "Whiskers" 
+186		call class Cat 
+187		PopParamAll 3 
+188		create_obj 24 puppy1 
+189		PushParamra 192 
+190		PushParam "Golden Retriever" 
+191		PushParam 1 
+192		PushParam "Max" 
+193		call class Puppy 
+194		PopParamAll 3 
+195		create_obj 24 kitten1 
+196		PushParamra 199 
+197		PushParam "White" 
+198		PushParam 1 
+199		PushParam "Fluffy" 
+200		call class Kitten 
+201		PopParamAll 3 
+202		PushParamra 202 
+203		call obj dog1.make_sound 
+204		PopParamAll 0 
+205		PopParamra t8 
+206		PushParamra 206 
+207		call obj dog1.describe 
+208		PopParamAll 0 
+209		PopParamra t9 
+210		PushParamra 210 
+211		call obj cat1.make_sound 
+212		PopParamAll 0 
+213		PopParamra t10 
+214		PushParamra 214 
+215		call obj cat1.describe 
+216		PopParamAll 0 
+217		PopParamra t11 
+218		PushParamra 218 
+219		call obj kitten1.make_sound 
+220		PopParamAll 0 
+221		PopParamra t12 
+222		PushParamra 222 
+223		call obj kitten1.describe 
+224		PopParamAll 0 
+225		PopParamra t13 
+226		PushParamra 226 
+227		call obj puppy1.make_sound 
+228		PopParamAll 0 
+229		PopParamra t14 
+230		PushParamra 230 
+231		call obj puppy1.describe 
+232		PopParamAll 0 
+233		PopParamra t15 
+234		Stackpointer -0 
+235		goto ra 
+236		return 
+237	EndFunc 
+238	PushParamra 238 
+239	call function main 
+240	PopParamAll 0 
+241	PopParamra t16 
+242	EOF 

@@ -1,0 +1,108 @@
+1	ShiftReduceParser.__init__: 
+2	BeginFunc 
+3		PushParam RBP 
+4		ra = PopParam 
+5		name_ = PopParam 
+6		Stackpointer +0 
+7		self.srname = name_ 
+8		Stackpointer +4 
+9		a = 10 
+10		Stackpointer -4 
+11		goto ra 
+12		return 
+13	EndFunc 
+14	LR0Parser.__init__: 
+15	BeginFunc 
+16		PushParam RBP 
+17		ra = PopParam 
+18		myname_ = PopParam 
+19		parentname_ = PopParam 
+20		Stackpointer +0 
+21		self.lr0name = myname_ 
+22		PushParamra 23 
+23		PushParam parentname_ 
+24		call class_func ShiftReduceParser 
+25		PopParamAll 1 
+26		Stackpointer -0 
+27		goto ra 
+28		return 
+29	EndFunc 
+30	CLRParser.__init__: 
+31	BeginFunc 
+32		PushParam RBP 
+33		ra = PopParam 
+34		myname_ = PopParam 
+35		parentname_ = PopParam 
+36		Stackpointer +0 
+37		self.clrname = myname_ 
+38		PushParamra 39 
+39		PushParam parentname_ 
+40		call class_func ShiftReduceParser 
+41		PopParamAll 1 
+42		Stackpointer -0 
+43		goto ra 
+44		return 
+45	EndFunc 
+46	LALRParser.__init__: 
+47	BeginFunc 
+48		PushParam RBP 
+49		ra = PopParam 
+50		myname_ = PopParam 
+51		clrname_ = PopParam 
+52		srname_ = PopParam 
+53		Stackpointer +0 
+54		self.lalrname = myname_ 
+55		PushParamra 57 
+56		PushParam srname_ 
+57		PushParam clrname_ 
+58		call class_func CLRParser 
+59		PopParamAll 2 
+60		Stackpointer -0 
+61		goto ra 
+62		return 
+63	EndFunc 
+64	LALRParser.print_name: 
+65	BeginFunc 
+66		PushParam RBP 
+67		ra = PopParam 
+68		call printstr "SLR name:" 
+69		call printstr self.srname 
+70		call printstr "CLR name:" 
+71		call printstr self.clrname 
+72		call printstr "LALR name:" 
+73		call printstr self.lalrname 
+74		Stackpointer -0 
+75		goto ra 
+76		return 
+77	EndFunc 
+78	main: 
+79	BeginFunc 
+80		PushParam RBP 
+81		ra = PopParam 
+82		create_obj 24 obj 
+83		PushParamra 86 
+84		PushParam "Shift-Reduce" 
+85		PushParam "CLR" 
+86		PushParam "LALR" 
+87		call class LALRParser 
+88		PopParamAll 3 
+89		PushParamra 92 
+90		PushParam "Mohak" 
+91		PushParam "Rajat" 
+92		PushParam "Dhruv" 
+93		call obj obj.__init__ 
+94		PopParamAll 3 
+95		PopParamra t4 
+96		PushParamra 96 
+97		call obj obj.print_name 
+98		PopParamAll 0 
+99		PopParamra t5 
+100		Stackpointer -0 
+101		goto ra 
+102		return 
+103	EndFunc 
+104	PushParamra 104 
+105	call function main 
+106	PopParamAll 0 
+107	PopParamra t6 
+108	EOF 

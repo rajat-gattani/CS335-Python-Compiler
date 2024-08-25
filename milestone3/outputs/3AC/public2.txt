@@ -1,0 +1,92 @@
+1	compute_min: 
+2	BeginFunc 
+3		PushParam RBP 
+4		ra = PopParam 
+5		data = PopParam 
+6		Stackpointer +4 
+7		min_value = 0 
+8		Stackpointer +4 
+9		i = 0 
+10		call len data 
+11		PopParamra t0 
+12		i = 0 
+13		t1 = i < t0
+14		if t1 goto 16 
+15		goto 30 
+16		t2 = min_value > 0
+17		if t2 goto 19 
+18		goto 22 
+19		t3 = i * 8
+20		min_value = data[t3] 
+21		goto 28 
+22		t4 = i * 8
+23		t5 = data[t4] < min_value
+24		if t5 goto 26 
+25		goto 28 
+26		t6 = i * 8
+27		min_value = data[t6] 
+28		i = i + 1
+29		goto 13 
+30		return min_value 
+31		Stackpointer -8 
+32		goto ra 
+33	EndFunc 
+34	compute_avg: 
+35	BeginFunc 
+36		PushParam RBP 
+37		ra = PopParam 
+38		data = PopParam 
+39		Stackpointer +4 
+40		sum = 0 
+41		Stackpointer +4 
+42		i = 0 
+43		call len data 
+44		PopParamra t7 
+45		i = 0 
+46		t8 = i < t7
+47		if t8 goto 49 
+48		goto 54 
+49		t9 = i * 8
+50		t10 = sum + data[t9]
+51		sum = t10 
+52		i = i + 1
+53		goto 46 
+54		return sum 
+55		Stackpointer -8 
+56		goto ra 
+57	EndFunc 
+58	main: 
+59	BeginFunc 
+60		PushParam RBP 
+61		ra = PopParam 
+62		t11 =  - 2
+63		t12 =  - 9
+64		Heapalloc 5 
+65		data = [t11,3,0,11,t12] 
+66		PushParamra 67 
+67		PushParam data 
+68		call function compute_min 
+69		PopParamAll 1 
+70		PopParamra t13 
+71		Stackpointer +4 
+72		min_value = t13 
+73		call printstr "Minimum value: " 
+74		call print min_value 
+75		PushParamra 76 
+76		PushParam data 
+77		call function compute_avg 
+78		PopParamAll 1 
+79		PopParamra t14 
+80		Stackpointer +4 
+81		avg_value = t14 
+82		call printstr "Sum value: " 
+83		call print avg_value 
+84		Stackpointer -36 
+85		goto ra 
+86		return 
+87	EndFunc 
+88	PushParamra 88 
+89	call function main 
+90	PopParamAll 0 
+91	PopParamra t15 
+92	EOF 
